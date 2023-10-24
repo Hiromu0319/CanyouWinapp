@@ -10,7 +10,7 @@ struct TopView: View {
             
             VStack(spacing: 32) {
                 
-                Text("Can you Win ?")
+                Text("Can you Win ??")
                     .font(.caprasimo(size: 40))
                     .multilineTextAlignment(.center)
                     .padding()
