@@ -17,7 +17,6 @@ class PlayViewModel: ObservableObject{
     @Published var navigateToTopView: Bool = false
     @Published var startTime: Date?
     @Published var endTime: Date?
-    @Published var finished: Bool = false
     private let scoreService: ScoreService = .shared
     let oldScore: Score?
     
@@ -28,7 +27,7 @@ class PlayViewModel: ObservableObject{
         
     }
     
-    //16個の配列を作成
+    //16個の数字の配列を作成
     func makeNumbers() -> Void{
         let number = "012345"
         var result: [String] = []
@@ -164,7 +163,6 @@ class PlayViewModel: ObservableObject{
     }
     
     
-    
     //choiceを押した時にselectedNumbers選択中の数字を追加
     func confirmNumber(num: String) -> Void{
         selectedNumbers.append(num)
@@ -256,11 +254,13 @@ class PlayViewModel: ObservableObject{
     }
     
     
+    //スタート時間を記録
     func onAppear() {
         startTime = .now
     }
 
     
+    //時間の表示形式を「？？：？？」のフォーマットに変更
     func convertDate() -> String? {
         guard let startTime, let endTime else { return nil }
         let time = endTime.timeIntervalSince(startTime)
@@ -274,12 +274,14 @@ class PlayViewModel: ObservableObject{
     }
     
     
+    //終了時間と開始時間の差を計算（スコアを計算）
     func getDuration() -> Double? {
         guard let startTime, let endTime else { return nil }
         return endTime.timeIntervalSince(startTime)
     }
     
     
+    //計算したスコアをfirebaseにuproad
     func uploadScoreButton() async {
         guard let time = getDuration() else { return }
         

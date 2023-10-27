@@ -69,7 +69,7 @@ struct PlayView: View {
     
     
     @ViewBuilder
-    func lastBlackView(proxy: GeometryProxy) -> some View {
+    func lastSelectView(proxy: GeometryProxy) -> some View {
         let size = proxy.size.width * 0.06
         if viewModel.selectedNumbers.count == 0 {
             Text("LastSelect: ")
@@ -92,7 +92,7 @@ struct PlayView: View {
                 Spacer()
                 main(proxy: proxy)
                 Spacer()
-                lastBlackView(proxy: proxy)
+                lastSelectView(proxy: proxy)
                 Spacer()
                 HStack {
                     
